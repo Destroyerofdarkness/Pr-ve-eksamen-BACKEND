@@ -7,6 +7,8 @@ require("dotenv").config();
 
 const cors = require("cors");
 
+const connectToMongoDB = require("./handlers/mongoDbHandler");
+
 //Required Routes
 const main_routes = require("./routes/main")
 
@@ -22,6 +24,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+connectToMongoDB();
 
 //Used Routes
 
