@@ -14,7 +14,7 @@ const keySchema = new Schema({
 keySchema.statics.generateKey = async()=>{
 const key = crypto.randomBytes(32).toString('hex');
 console.log("Key: ",key);
-const hash = crypto.createHash("sha256").digest('hex');
+const hash = crypto.createHash("sha256").update(key).digest('hex');
 console.log("Hash", hash);
 const newKey = new Key({
     key:hash,
