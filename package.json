@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.4.1",
+    "nodemon": "^3.1.14"
+  },
+  "name": "pr-ve-eksamen-backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Destroyerofdarkness/Pr-ve-eksamen-BACKEND.git"
+  },
+  "author": "megatron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Destroyerofdarkness/Pr-ve-eksamen-BACKEND/issues"
+  },
+  "homepage": "https://github.com/Destroyerofdarkness/Pr-ve-eksamen-BACKEND#readme",
+  "description": ""
+}
