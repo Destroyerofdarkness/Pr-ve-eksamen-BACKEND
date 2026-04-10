@@ -5,9 +5,9 @@ const authorization = async(req,res,next)=>{
     const key = req.headers.authorization
     try {
         const hash = crypto.createHash("sha256").update(key).digest('hex');
-        const foundKey = await Key.find({key:hash});
+        const foundKey = await Key.findOne({key:hash});
         console.log(foundKey)
-        if(!foundKey.key){
+        if(!foundKey){
             res.status(401).json({message: "Unauthorized access. API KEY NOT FOUND!"})
         }else{
             next()

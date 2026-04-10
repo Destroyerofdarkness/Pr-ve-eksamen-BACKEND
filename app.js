@@ -10,7 +10,9 @@ const cors = require("cors");
 const connectToMongoDB = require("./handlers/mongoDbHandler");
 
 //Required Routes
-const main_routes = require("./routes/main")
+const main_routes = require("./routes/main_routes");
+
+const auth_routes = require("./routes/auth_routes")
 
 //Config Options
 app.use(express.json());
@@ -29,8 +31,9 @@ connectToMongoDB();
 
 //Used Routes
 
-app.use(main_routes)
+app.use(main_routes);
 
+app.use("/auth", auth_routes);
 
 //Server Starts
 app.listen(process.env.PORT, () => {

@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const crypto = require("crypto");
+
 const keySchema = new Schema({
   key: {
     type: String,
@@ -20,8 +21,8 @@ const newKey = new Key({
     key:hash,
     user:"megatron"
 })
-
 await newKey.save();
+return;
 }
 
 
