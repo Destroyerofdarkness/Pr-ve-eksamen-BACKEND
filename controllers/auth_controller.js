@@ -17,6 +17,7 @@ const sign_in_user = async (req, res) => {
       .status(200)
       .json({
         token,
+        success:true,
         message: "Succesfully signed the user in and made the token!!",
       });
   } catch (err) {
@@ -25,6 +26,7 @@ const sign_in_user = async (req, res) => {
       .status(400)
       .json({
         errors,
+        success:false,
         message: "Couldn't sign the user in because of errors!!",
       });
   }
@@ -54,6 +56,7 @@ const sign_up_user = async (req, res) => {
 const sendBackUserAndVerify= async (req, res) => {
   const token = req.params.token;
   try {
+    console.log(token)
     jwt.verify(token, process.env.secret, async (err, decodedToken) => {
       if (err) {
         console.log("Err on JWT verification: ", err);
