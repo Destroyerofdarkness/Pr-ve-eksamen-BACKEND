@@ -1,53 +1,44 @@
 const { Schema, model } = require("mongoose");
-const argon2 = require("argon2");
+const crypto = require("crypto");
 
 const userSchema = new Schema({
-    name:{
+    code:{
         unique:true,
         type:String,
-        required:[true, "Username must be provided!!"]
+        required:[true, "Code must be provided!!"]
     },
-    passwd:{
-        type:String,
-        required: [true,"Password must be provided!!"],
-        minLength: [6, "Password must be minimum 6 characters!!"]
-    }
 })
 
 userSchema.pre("save", async function(){
 try {
-    this.passwd = await argon2.hash(this.passwd);
+    this.code = await crypto.createHash("sha256").update(this.code).digest('hex');
+    console.log("Hashed Code: ", this.code)
 } catch (err) {
     console.log("Error when saving User cause: ",err)
 }
 })
 
 userSchema.statics.signUp = async(info)=>{
-    if(info.passwd === info.conPass){
         const newUser = new User({
-            name: info.name,
-            passwd: info.passwd
+            code: info.code,
         })
+        
        const savedUser = await newUser.save();
        return savedUser._id;
-    }else{
-        throw Error("Provided passwords doesn't match!!")
-    }
+    
 }
 
 userSchema.statics.signIn = async(info)=>{
-    const user = await User.findOne({name:info.name})
+    const hashedCode = await crypto.createHash("sha256").update(info.code).digest('hex');
+    const user = await User.findOne({code:hashedCode});
+    console.log("Code: ", user)
     if(user){
-    if(await argon2.verify(user.passwd, info.passwd)){
-        return user._id;
+        return user._id
     }else{
-        throw Error("Provided password is not right!!")
-    }
-    }else{
-        throw Error("Provided user not Found!!");
+        throw Error("Koden er feil..");
     }
 }
 
-const User = model("Users", userSchema);
+const User = model("kodene", userSchema);
 
 module.exports = User

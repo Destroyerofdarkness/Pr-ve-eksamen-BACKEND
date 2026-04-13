@@ -1,22 +1,14 @@
 const handler_user_errors = (err) => {
   console.log(err.message, err.code);
 
-  const errors = { name: "", passwd: "" };
+  const errors = { name: ""};
 
   //Self Made error messages
   if (err.code == 11000) {
-    errors.name = "The username is already in use!!";
+    errors.name = "The code already exists!!";
     return errors;
   }
-  if (err.message == "Provided passwords doesn't match!!") {
-    errors.passwd = err.message;
-    return errors;
-  }
-  if (err.message == "Provided password is not right!!") {
-    errors.passwd = err.message;
-    return errors;
-  }
-  if (err.message == "Provided user not Found!!") {
+  if (err.message == "Koden er feil..") {
     errors.name = err.message;
     return errors;
   }
