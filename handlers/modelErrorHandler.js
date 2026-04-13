@@ -20,5 +20,20 @@ const handler_user_errors = (err) => {
   return errors;
 };
 
+handle_report_errors = (err)=>{
+  console.log(err.message, err.code);
 
-module.exports = {handler_user_errors}
+  const errors = {title: "", description: ""};
+
+  if (err.code == 11000) {
+    errors.title = "Tittelen er allerede i bruk!!";
+    return errors;
+  }
+
+  Object.values(err.errors).forEach(({ properties }) => {
+    errors[properties.path] = properties.message;
+  });
+  return errors;
+}
+
+module.exports = {handler_user_errors, handle_report_errors}
