@@ -25,6 +25,14 @@ reportSchema.statics.publish = async(info)=>{
     await newReport.save();
 }
 
+reportSchema.statics.update = async(info)=>{
+    console.log("UPDATE INFO:", info)
+    await Report.findByIdAndUpdate(info.id,{
+        status:info.status
+    });
+    return;
+}
+
 const Report = model("reports", reportSchema);
 
 module.exports = Report
