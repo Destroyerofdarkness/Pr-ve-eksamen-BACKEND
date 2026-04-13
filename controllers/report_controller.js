@@ -21,7 +21,7 @@ const report_publish = async (req,res) => {
 
 const all_reports = async(req,res)=>{
     try {
-        const reports = Report.find();
+        const reports = await Report.find();
         res.status(200).json({reports, success:true, message:"Succesfully got all the reports from the database!"});
     } catch (err) {
         console.log(err);
