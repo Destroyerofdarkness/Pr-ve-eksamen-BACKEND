@@ -7,6 +7,10 @@ const userSchema = new Schema({
         type:String,
         required:[true, "Code must be provided!!"]
     },
+    role:{
+        type:String,
+        default: "Ansatt"
+    }
 })
 
 userSchema.pre("save", async function(){
