@@ -4,11 +4,11 @@ const reportSchema = new Schema({
     title:{
         unique:true,
         type:String,
-        required:[true, "Tittelen må blis skrevet inn!!"]
+        required:[true, "Tittelen må bli skrevet inn!!"]
     },
     description:{
         type:String,
-        required:[true, "Beskrivelsen må blis skrevet inn!!"],
+        required:[true, "Beskrivelsen må bli skrevet inn!!"],
         minLength:[100, "Beskrivelsen til avviket er for kort!!"]
     },
     status:{
