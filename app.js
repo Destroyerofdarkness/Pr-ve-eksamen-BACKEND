@@ -12,7 +12,9 @@ const connectToMongoDB = require("./handlers/mongoDbHandler");
 //Required Routes
 const main_routes = require("./routes/main_routes");
 
-const auth_routes = require("./routes/auth_routes")
+const auth_routes = require("./routes/auth_routes");
+
+const report_routes = require("./routes/report_routes");
 
 //Config Options
 app.use(express.json());
@@ -34,6 +36,8 @@ connectToMongoDB();
 app.use(main_routes);
 
 app.use("/auth", auth_routes);
+
+app.use("/report", report_routes)
 
 //Server Starts
 app.listen(process.env.PORT, () => {
