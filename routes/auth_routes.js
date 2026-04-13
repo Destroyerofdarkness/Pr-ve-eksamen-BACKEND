@@ -5,10 +5,10 @@ const controller = require("../controllers/auth_controller.js")
 const authorization = require("../middleware/authorize.js")
 
 
-router.post("/signIn", authorization, controller.sign_in_user);
+router.post("/signIn", controller.sign_in_user);
 
-router.post("/signUp", authorization, controller.sign_up_user);
+router.post("/signUp", controller.sign_up_user);
 
-router.get("/verifyJWT/:token",authorization, controller.sendBackUserAndVerify);
+router.get("/verifyJWT/:token", controller.sendBackUserAndVerify);
 
 module.exports = router

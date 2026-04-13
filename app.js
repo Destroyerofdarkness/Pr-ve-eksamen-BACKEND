@@ -9,6 +9,8 @@ const cors = require("cors");
 
 const connectToMongoDB = require("./handlers/mongoDbHandler");
 
+const authorization = require("./middleware/authorize.js")
+
 //Required Routes
 const main_routes = require("./routes/main_routes");
 
@@ -30,6 +32,8 @@ app.use(
 );
 
 connectToMongoDB();
+
+app.use(authorization);
 
 //Used Routes
 

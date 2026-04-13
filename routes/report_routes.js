@@ -4,8 +4,9 @@ const controller = require("../controllers/report_controller.js")
 
 const authorization = require("../middleware/authorize.js")
 
+router.get("/all",controller.all_reports)
 
-router.post("/publish", authorization, controller.report_publish);
+router.post("/publish", controller.report_publish);
 
 
 module.exports = router;
