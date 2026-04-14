@@ -41,4 +41,14 @@ const update_report = async(req,res)=>{
     }
 }
 
-module.exports = {report_publish,all_reports, update_report}
+const delete_report = async(req,res)=>{
+    const {BODY} = req.body
+    try {
+        await Report.findByIdAndDelete(BODY.reportID);
+        res.status(200).json({success:true, message: "Succesfully deleted the report"});
+    } catch (err) {
+        res.status(500).json({err, success:false, message:"Unable to delete the report cause of Internal Server Error"});
+    }
+}
+
+module.exports = {report_publish,all_reports, update_report, delete_report}

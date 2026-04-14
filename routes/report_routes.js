@@ -10,5 +10,7 @@ router.post("/publish", controller.report_publish);
 
 router.put("/update", controller.update_report);
 
+router.delete("/delete",controller.delete_report);
+
 
 module.exports = router;
