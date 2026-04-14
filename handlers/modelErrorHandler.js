@@ -1,15 +1,15 @@
 const handler_user_errors = (err) => {
   console.log(err.message, err.code);
 
-  const errors = { name: ""};
+  const errors = { passwd: ""};
 
   //Self Made error messages
   if (err.code == 11000) {
-    errors.name = "The code already exists!!";
+    errors.passwd = "The code already exists!!";
     return errors;
   }
   if (err.message == "Koden er feil..") {
-    errors.name = err.message;
+    errors.passwd = err.message;
     return errors;
   }
 

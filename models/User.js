@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const crypto = require("crypto");
 
 const userSchema = new Schema({
-    code:{
+    passwd:{
         unique:true,
         type:String,
         required:[true, "Code must be provided!!"]
@@ -15,7 +15,7 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function(){
 try {
-    this.code = await crypto.createHash("sha256").update(this.code).digest('hex');
+    this.passwd= await crypto.createHash("sha256").update(this.passwd).digest('hex');
     console.log("Hashed Code: ", this.code)
 } catch (err) {
     console.log("Error when saving User cause: ",err)
@@ -24,7 +24,7 @@ try {
 
 userSchema.statics.signUp = async(info)=>{
         const newUser = new User({
-            code: info.code,
+            passwd: info.code,
         })
         
        const savedUser = await newUser.save();
@@ -33,8 +33,9 @@ userSchema.statics.signUp = async(info)=>{
 }
 
 userSchema.statics.signIn = async(info)=>{
+    console.log(info.code)
     const hashedCode = await crypto.createHash("sha256").update(info.code).digest('hex');
-    const user = await User.findOne({code:hashedCode});
+    const user = await User.findOne({passwd:hashedCode});
     console.log("Code: ", user)
     if(user){
         return user._id
@@ -43,6 +44,6 @@ userSchema.statics.signIn = async(info)=>{
     }
 }
 
-const User = model("kodene", userSchema);
+const User = model("users", userSchema);
 
 module.exports = User
