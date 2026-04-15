@@ -23,7 +23,7 @@ const handler_user_errors = (err) => {
 handle_report_errors = (err)=>{
   console.log(err.message, err.code);
 
-  const errors = {title: "", description: ""};
+  const errors = {title: "", description: "", category: ""};
 
   if (err.code == 11000) {
     errors.title = "Tittelen er allerede i bruk!!";

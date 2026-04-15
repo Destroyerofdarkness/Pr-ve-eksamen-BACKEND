@@ -2,8 +2,6 @@ const router = require("express").Router();
 
 const controller = require("../controllers/report_controller.js")
 
-const authorization = require("../middleware/authorize.js")
-
 router.get("/all",controller.all_reports);
 
 router.post("/publish", controller.report_publish);

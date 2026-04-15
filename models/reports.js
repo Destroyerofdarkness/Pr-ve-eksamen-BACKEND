@@ -14,13 +14,18 @@ const reportSchema = new Schema({
     status:{
         type:String,
         default:"Aktiv"
+    },
+    category:{
+        type:String,
+        required:[true, "Kategori må velges!!"]
     }
 })
 
 reportSchema.statics.publish = async(info)=>{
     const newReport = new Report({
         title:info.title,
-        description:info.description
+        description:info.description,
+        category:info.category
     })
     await newReport.save();
 }

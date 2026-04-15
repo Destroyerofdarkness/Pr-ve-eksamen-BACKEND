@@ -18,6 +18,8 @@ const auth_routes = require("./routes/auth_routes");
 
 const report_routes = require("./routes/report_routes");
 
+const category_routes = require("./routes/category_routes.js")
+
 //Config Options
 app.use(express.json());
 
@@ -42,6 +44,8 @@ app.use(main_routes);
 app.use("/auth", auth_routes);
 
 app.use("/report", report_routes)
+
+app.use("/category", category_routes)
 
 //Server Starts
 app.listen(process.env.PORT, () => {
