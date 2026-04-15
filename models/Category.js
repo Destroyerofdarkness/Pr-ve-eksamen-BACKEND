@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 
 const categorySchema = new Schema({
     name:{
+        unique:true,
         type:String,
         required:true,
     }
@@ -17,6 +18,6 @@ categorySchema.statics.new = async(info)=>{
 }
 
 
-const Category = model("Categories", categorySchema);
+const Category = model("categories", categorySchema);
 
 module.exports = Category
